@@ -46,15 +46,15 @@ def create_token():
     access_token = create_access_token(identity=username)
     return jsonify(access_token=access_token)
 
-@jwt_required()
 @app.route("/api/transactions", methods = ["GET"])
+@jwt_required()
 def get_transactions():
     transactions = Transaction.query.all()
     json_transactions = list(map(lambda x: x.to_json(), transactions))
     return jsonify({"transactions":json_transactions})
 
-@jwt_required()
 @app.route("/api/create_transaction",methods =["POST"])
+@jwt_required()
 def create_transaction():
     to_account = request.json.get('toAccount')
     from_account = request.json.get('fromAccount')
@@ -75,8 +75,8 @@ def create_transaction():
     
     return jsonify({"message":"Transaction added"}), 201
 
-@jwt_required()
 @app.route("/api/update_state/<int:id>", methods = ["PATCH"])
+@jwt_required()
 def update_state(id):
     transaction = Transaction.query.get(id)
     

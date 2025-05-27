@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 
+function refreshPage(){ 
+    window.location.reload(); 
+}
+
 const TransactionsForm = ({}) => {
 
 
@@ -25,6 +29,7 @@ const TransactionsForm = ({}) => {
         const options = {
             method: 'POST',
             headers: {
+                Authorization : "Bearer " + sessionStorage.getItem('token'),
                 "Content-Type":"application/json"
             },
             body: JSON.stringify(data)
@@ -35,7 +40,9 @@ const TransactionsForm = ({}) => {
             const message = await response.json()
             alert(data.message)
         }
-        else{}
+        else{
+            refreshPage()
+        }
     }
     return <form onSubmit={onSubmit}>
         <div>
