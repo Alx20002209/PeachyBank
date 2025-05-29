@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 function refreshPage(){ 
     window.location.reload(); 
 }
@@ -17,7 +16,6 @@ const TransactionsForm = ({}) => {
     
 
     const onSubmit = async(e) => {
-        e.preventDefault()
         const data  = {
             toAccount,
             fromAccount,
